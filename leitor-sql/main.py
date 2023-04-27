@@ -96,5 +96,7 @@ def processarTabela(arquivoSQL, insert=False):
 
 if __name__=="__main__":
     #processarTodosArquivos()
-    #processarTabela("EMPREGADOS.sql",)
-    processarTabela("CARGOS.sql",True)
+    #processarTabela("EMPREGADOS.sql",True)
+    #processarTabela("CARGOS.sql",True)
+    #processarTabela("SETORES.sql",True)
+    processarTabela("EMPRESAS.sql", True)
