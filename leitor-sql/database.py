@@ -17,10 +17,19 @@ class Database:
             return "INT"
         elif (atributo.startswith("DT") or atributo.startswith("DATA")):
             return "DATETIME"
-        elif (atributo=="LOG_UPDATE" or atributo.startswith("ATIVIDADES") or atributo=="LTCATOBS" or atributo=="PCMSOOBS"):
+        elif (atributo=="LOG_UPDATE" 
+              or atributo.startswith("ATIVIDADES") 
+              or atributo=="LTCATOBS" 
+              or atributo=="DESCRICAO"
+              or atributo=="LEGENDAANALISERISCOS"
+              or atributo=="EVENTOS_ESOCIAL"
+              or atributo=="DENOMINACAO"
+              or atributo=="PCMSOOBS"):
             return "TEXT"
+        elif (atributo=="RAZAOSOCIAL" or atributo=="EMAIL"):
+            return "VARCHAR(100)"
         else:
-            return "VARCHAR(512)"
+            return "VARCHAR(50)"
 
     def criaAtributos(self, atributos):
         lista = ""
@@ -35,7 +44,7 @@ class Database:
         #atributos = "id INT, name VARCHAR(255), address VARCHAR(255)"
         #print(self.criaAtributos(atributos))
         sqlQuery = f"CREATE TABLE IF NOT EXISTS {name}(CODIGO INT NOT NULL AUTO_INCREMENT, {self.criaAtributos(atributos)}, PRIMARY KEY(CODIGO))"
-        #print(sqlQuery)
+        print(sqlQuery)
         self.cursor.execute(sqlQuery)
     
     def inserirRegistro(self, sql):
@@ -49,4 +58,5 @@ class Database:
         if (sql.startswith("SELECT")):
             self.cursor.execute(sql)
             return self.cursor.fetchall()
+
 
